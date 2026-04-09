@@ -1,0 +1,2347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUSTHANUL AARIFEEN SUNNI HIGHER SECONDARY MADRASSA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00796b;
+            --primary-dark: #005047;
+            --secondary: #d4af37;
+            --secondary-light: #f5df96;
+            --bg: #f4f7f6;
+            --white: #ffffff;
+            --text-main: #2b3a32;
+            --text-light: #6a7c73;
+            --success: #28a745;
+            --danger: #dc3545;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s ease;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% center;
+            }
+
+            50% {
+                background-position: 100% center;
+            }
+
+            100% {
+                background-position: 0% center;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Typography & Utilities */
+        h1,
+        h2,
+        h3 {
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .malayalam {
+            font-family: 'Meera', 'AnjaliOldLipi', 'Manjari', sans-serif;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: linear-gradient(90deg, #102622 0%, #00796b 50%, #102622 100%);
+            background-size: 200% 100%;
+            animation: gradientShift 6s ease infinite;
+            color: var(--white);
+            padding: 1.2rem 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-title {
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--white);
+        }
+
+        .menu-btn {
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--white);
+            transition: var(--transition);
+        }
+
+        .menu-btn:hover {
+            opacity: 0.8;
+            transform: scale(1.05);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 280px;
+            height: 100vh;
+            background: var(--white);
+            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+            z-index: 1001;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            padding: 2rem 0;
+        }
+
+        .sidebar.active {
+            right: 0;
+        }
+
+        .sidebar-header {
+            padding: 0 2rem 1.5rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close-btn {
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .sidebar-nav li {
+            padding: 1rem 2rem;
+            border-left: 4px solid transparent;
+            transition: var(--transition);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .sidebar-nav li:hover,
+        .sidebar-nav li.active-nav {
+            background: rgba(0, 121, 107, 0.05);
+            border-left: 4px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .wa-link {
+            margin-top: auto;
+            margin-left: 2rem;
+            margin-right: 2rem;
+            padding: 1rem;
+            background: #25D366;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+
+        .wa-link:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none;
+            backdrop-filter: blur(3px);
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* Main Content Area */
+        main {
+            padding: 2rem 5%;
+            min-height: calc(100vh - 80px);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounceUnderline {
+
+            0%,
+            100% {
+                width: 0;
+                left: 0;
+            }
+
+            50% {
+                width: 100%;
+                left: 0;
+            }
+        }
+
+        .bouncing-underline {
+            position: relative;
+            display: inline-block;
+        }
+
+        .bouncing-underline::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            animation: bounceUnderline 2s ease-in-out infinite;
+        }
+
+        /* Home Section */
+        .welcome-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 3.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.04);
+            max-width: 800px;
+            margin: 2rem auto;
+            width: 100%;
+        }
+
+        .hero-icon {
+            font-size: 5rem;
+            color: #d4af37;
+            margin-bottom: 1rem;
+        }
+
+        .welcome-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .welcome-malayalam {
+            font-size: 1.2rem;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        /* Updates Section */
+        .news-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            max-width: 550px;
+            margin: 1.5rem auto 0;
+        }
+
+        .news-card {
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .news-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .news-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .news-img:hover {
+            opacity: 0.95;
+        }
+
+        .news-content {
+            padding: 1.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .news-date {
+            font-size: 0.9rem;
+            color: #999;
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+
+        .news-title {
+            font-size: 1.4rem;
+            color: var(--primary-dark);
+            margin-bottom: 0.2rem;
+        }
+
+        .news-desc {
+            color: var(--text-main);
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+
+        /* Result Section */
+        .search-container {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            max-width: 500px;
+            margin: 0 auto 2rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: #fdfdfd;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 121, 107, 0.1);
+        }
+
+        .btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            width: 100%;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Result Card */
+        /* Result Card Layout */
+        #resultCard {
+            display: none;
+            background: #e6f3eb;
+            border: 4px solid #a3b9a2;
+            border-radius: 12px;
+            padding: 2.5rem;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .print-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #2b3a32;
+        }
+
+        .print-header h2 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            color: #000;
+        }
+
+        .print-header p {
+            font-size: 0.75rem;
+            color: #6a7c73;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .student-info-box {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.95rem;
+            color: #444;
+            border-bottom: 1px dotted #ccc;
+            padding-bottom: 0.5rem;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .info-val {
+            font-weight: 600;
+            color: #000;
+            text-transform: uppercase;
+        }
+
+        .table-responsive {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 1rem 1.2rem;
+            text-align: left;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        th {
+            background: #5c6bc0;
+            color: var(--white);
+            font-weight: 600;
+            text-transform: none;
+            letter-spacing: 0;
+            font-size: 1rem;
+        }
+
+        .badge-container {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .badge {
+            padding: 0.6rem 2.5rem;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1rem;
+            display: inline-block;
+        }
+
+        .badge.pass {
+            background: #4caf50;
+            color: var(--white);
+        }
+
+        .badge.fail {
+            background: #ef5350;
+            color: var(--white);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .btn-print-new {
+            background: #4caf50;
+            color: var(--white);
+            border: none;
+            padding: 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            flex: 1;
+            transition: 0.3s;
+        }
+
+        .btn-print-new:hover {
+            background: #388e3c;
+        }
+
+        .btn-search-again {
+            background: #78909c;
+            color: var(--white);
+            border: none;
+            padding: 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            flex: 1;
+            transition: 0.3s;
+        }
+
+        .btn-search-again:hover {
+            background: #607d8b;
+        }
+
+        .error-msg {
+            display: none;
+            color: var(--danger);
+            background: rgba(220, 53, 69, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* Image Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .close-modal:hover {
+            color: var(--secondary);
+        }
+
+        /* Voting Complete Popup */
+        .voting-complete-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2500;
+            backdrop-filter: blur(5px);
+        }
+
+        .voting-complete-overlay.show {
+            display: flex;
+        }
+
+        .voting-complete-popup {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            animation: popupSlideIn 0.4s ease forwards;
+        }
+
+        @keyframes popupSlideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .voting-complete-popup i {
+            font-size: 4rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .voting-complete-popup h2 {
+            color: var(--primary-dark);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .voting-complete-popup p {
+            color: var(--text-light);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .popup-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .popup-buttons button {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .btn-allow {
+            background: var(--success);
+            color: white;
+            flex: 1;
+        }
+
+        .btn-allow:hover {
+            background: #228e36;
+        }
+
+        .print-only-footer {
+            display: none;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px dotted #ccc;
+        }
+
+        /* Print Customization */
+        @page {
+            size: A4;
+            margin: 0mm;
+            /* Removes the file path and URL from browser print headers and footers */
+        }
+
+        @media print {
+
+            header,
+            .sidebar,
+            .overlay,
+            footer,
+            .search-container,
+            .action-buttons,
+            .news-grid,
+            .welcome-card,
+            .sidebar-nav,
+            #contactButtonsContainer {
+                display: none !important;
+            }
+
+            .print-only-footer {
+                display: block !important;
+            }
+
+            body,
+            html {
+                background: white;
+                margin: 0;
+                padding: 0;
+                min-height: 100%;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            main {
+                padding: 15mm;
+                /* Simulated mechanical margins since @page margin is 0 */
+                min-height: auto;
+            }
+
+            #resultCard,
+            #electionResultCard {
+                box-shadow: none;
+                max-width: 100%;
+                border: 2px solid var(--primary-dark);
+                page-break-inside: avoid;
+                margin: 0 auto;
+            }
+
+            #studentsCard {
+                box-shadow: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            #studentsCard th,
+            #studentsCard td {
+                padding: 0.25rem 0.5rem !important;
+                font-size: 0.85rem !important;
+            }
+
+            #studentsCard h3 {
+                margin-bottom: 0.5rem !important;
+                padding-bottom: 0.5rem !important;
+                font-size: 1.3rem !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-title {
+                font-size: 0.9rem;
+            }
+
+            .welcome-card {
+                padding: 2.5rem 1rem;
+                margin-top: 1rem;
+            }
+
+            .welcome-malayalam {
+                font-size: 1.1rem;
+            }
+
+            .result-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .progress-container {
+                margin-top: 1rem;
+            }
+
+            .result-footer {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .btn-print {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo-container">
+            <h1 class="header-title">Busthanul Aarifeen Sunni Higher Secondary Madrassa pazhayakadappuram</h1>
+        </div>
+        <i class="fas fa-bars menu-btn" onclick="toggleSidebar()"></i>
+    </header>
+    <!-- Sidebar -->
+    <div class="overlay" onclick="toggleSidebar()"></div>
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <h3>Menu</h3>
+            <i class="fas fa-times close-btn" onclick="toggleSidebar()"></i>
+        </div>
+        <ul class="sidebar-nav">
+            <li class="active-nav" onclick="navigate('home')"><i class="fas fa-home"></i> Home</li>
+            <li onclick="navigate('updates')"><i class="fas fa-bell"></i> Updates</li>
+            <li onclick="navigate('result')"><i class="fas fa-file-alt"></i> Result</li>
+            <li onclick="navigate('syllabus')"><i class="fas fa-book"></i> Syllabus</li>
+            <li onclick="navigate('viewstudents')"><i class="fas fa-users"></i> View Students</li>
+            <li onclick="navigate('election')"><i class="fas fa-vote-yea"></i> Election Portal</li>
+        </ul>
+        <a href="https://wa.me/8590106300" class="wa-link" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-whatsapp"></i> CONTACT SADAR USTHAD
+        </a>
+    </nav>
+    <!-- Main Content -->
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="page active">
+            <div class="welcome-card">
+                <i class="fas fa-mosque hero-icon"></i>
+                <h2 class="welcome-title">WELCOME</h2>
+                <p class="welcome-malayalam malayalam">മദ്രസ്സ അറിയിപ്പുകളും പരീക്ഷാ ഫലങ്ങളും ഇവിടെ ലഭ്യമാണ്.</p>
+            </div>
+        </section>
+        <!-- Updates Section -->
+        <section id="updates" class="page">
+            <div style="margin-bottom: 2rem; text-align: center;">
+                <h2 class="bouncing-underline"
+                    style="text-transform: uppercase; color: var(--primary-dark); font-size: 1.8rem; letter-spacing: 1px;">
+                    Latest Updates</h2>
+            </div>
+            <div
+                style="background: linear-gradient(135deg, rgba(0, 121, 107, 0.1) 0%, rgba(212, 175, 55, 0.1) 100%); border: 2px solid var(--primary); border-radius: 15px; padding: 3rem 2rem; text-align: center; max-width: 600px; margin: 0 auto;">
+                <i class="fas fa-hourglass-start"
+                    style="font-size: 4rem; color: var(--secondary); margin-bottom: 1.5rem; display: block;"></i>
+                <h3 style="font-size: 2rem; color: var(--primary-dark); margin-bottom: 1rem;"> Coming Soon</h3>
+                <p style="font-size: 1.1rem; color: var(--text-light); line-height: 1.6;">working inprogress. Stay
+                    tuned!</p>
+            </div>
+        </section>
+        <!-- Result Section -->
+        <section id="result" class="page">
+            <div style="margin-bottom: 2rem; text-align: center;">
+                <h2 class="bouncing-underline"
+                    style="text-transform: uppercase; color: var(--primary-dark); font-size: 1.8rem; letter-spacing: 1px;">
+                    Student Result Portal</h2>
+            </div>
+            <div
+                style="background: linear-gradient(135deg, rgba(0, 121, 107, 0.1) 0%, rgba(212, 175, 55, 0.1) 100%); border: 2px solid var(--primary); border-radius: 15px; padding: 3rem 2rem; text-align: center; max-width: 600px; margin: 0 auto;">
+                <i class="fas fa-hourglass-start"
+                    style="font-size: 4rem; color: var(--secondary); margin-bottom: 1.5rem; display: block;"></i>
+                <h3 style="font-size: 2rem; color: var(--primary-dark); margin-bottom: 1rem;"> Coming Soon</h3>
+                <p style="font-size: 1.1rem; color: var(--text-light); line-height: 1.6;">working inprogress. Stay
+                    tuned!</p>
+            </div>
+            <div style="display: none;">
+                <div class="search-container">
+                    <i class="fas fa-graduation-cap"
+                        style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                    <h2 style="margin-bottom: 0.5rem;">Student Result Portal</h2>
+                    <p style="color: var(--text-light); margin-bottom: 2rem;">HALF YEAR EXAMINATION RESULTS.</p>
+
+                    <div id="errorMsg" class="error-msg">Invalid Register Number or Class. Please try again.</div>
+                    <form id="resultForm" onsubmit="fetchResult(event)">
+                        <div class="form-group">
+                            <label for="regNo">Register Number</label>
+                            <input type="text" id="regNo" class="form-control" placeholder="reg no" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="className">Select Class</label>
+                            <select id="className" class="form-control" required>
+                                <option value="" disabled selected>Choose class</option>
+                                <option value="Class 1A">Class 1A</option>
+                                <option value="Class 1B">Class 1B</option>
+                                <option value="Class 2">Class 2</option>
+                                <option value="Class 3">Class 3</option>
+                                <option value="Class 4">Class 4</option>
+                                <option value="Class 5">Class 5</option>
+                                <option value="Class 6">Class 6</option>
+                                <option value="Class 7">Class 7</option>
+                                <option value="Class 8">Class 8</option>
+                                <option value="Class 9">Class 9</option>
+                                <option value="Class 10">Class 10</option>
+                                <option value="Class +1">Class +1</option>
+                                <option value="Class +2">Class +2</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn"><i class="fas fa-search"></i> View Result</button>
+                    </form>
+                </div>
+                <!-- Dynamic Result Card -->
+                <!-- Dynamic Result Card -->
+                <div id="resultCard">
+                    <div class="print-header">
+                        <h2>BUSTHANUL AARIFEEN SUNNI HIGHER SECONDARY MADRASSA </h2>
+                        <p>HALF YEAR EXAMINATION RESULTS</p>
+                    </div>
+                    <div class="student-info-box">
+                        <div class="info-row">
+                            <span>Register Number:</span>
+                            <span id="r-reg" class="info-val">0000</span>
+                        </div>
+                        <div class="info-row">
+                            <span>Student Name:</span>
+                            <span id="r-name" class="info-val"
+                                style="cursor: pointer; padding: 0.25rem 0.5rem; border-radius: 3px; transition: background 0.2s;"
+                                title="Click to edit" onclick="editStudentName()">Student Name</span>
+                            <input type="text" id="r-name-input"
+                                style="display: none; padding: 0.5rem; border: 2px solid var(--primary); border-radius: 5px; font-weight: 600;">
+                        </div>
+                        <div class="info-row">
+                            <span>Class:</span>
+                            <span id="r-class" class="info-val">Class 0</span>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Subject</th>
+                                    <th>Marks</th>
+                                </tr>
+                            </thead>
+                            <tbody id="r-marks">
+                                <!-- Marks will be injected here -->
+                            </tbody>
+                            <tfoot>
+                                <tr style="font-weight: 700; background: var(--white);">
+                                    <td style="color: #444;">Total</td>
+                                    <td id="r-total" style="color: #000;">0</td>
+                                </tr>
+                                <tr style="font-weight: 700; background: var(--white);">
+                                    <td style="color: var(--primary-dark);">Grade</td>
+                                    <td id="r-grade" style="color: var(--secondary); font-size: 1.1rem;">NaN</td>
+                                </tr>
+                                <tr style="font-weight: 700; background: var(--white);">
+                                    <td style="color: var(--text-light);">Attendance</td>
+                                    <td id="r-attendance" style="color: var(--primary-dark); font-size: 1.1rem;">0</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="badge-container">
+                        <span class="badge" id="r-status">PASSED</span>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-print-new" onclick="window.print()">Print Result</button>
+                        <button class="btn" id="saveNameBtn" style="display: none; background: var(--success);"
+                            onclick="saveStudentName()"><i class="fas fa-save"></i> Save Name</button>
+                        <button class="btn" id="cancelEditBtn" style="display: none; background: var(--danger);"
+                            onclick="cancelEditName()">Cancel</button>
+                        <button class="btn btn-search-again"
+                            onclick="document.getElementById('resultCard').style.display='none'; document.getElementById('errorMsg').style.display='none'; document.getElementById('resultForm').reset(); window.scrollTo({top: 0, behavior: 'smooth'});">Search
+                            Again</button>
+                    </div>
+
+                    <!-- Explicit Footer visible only during Print Preview -->
+                    <div class="print-only-footer">
+                        <p> DESIGNED BY <span
+                                style="color: var(--secondary); font-weight: 700; letter-spacing: 0.5px;">CP
+                                AMEEN</span>
+                        </p>
+                    </div>
+                </div>
+                <!-- All Students by Class Container -->
+                <div id="allStudentsByClassCard"
+                    style="display: none; background: var(--white); border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); max-width: 1000px; margin: 2rem auto 0; position: relative; overflow: hidden; animation: fadeIn 0.5s ease forwards; padding: 2rem;">
+                    <h3
+                        style="color: var(--primary-dark); margin-bottom: 1.5rem; text-align: center; border-bottom: 2px solid rgba(0, 121, 107, 0.1); padding-bottom: 1rem; font-size: 1.5rem;">
+                        All Students Organized by Class</h3>
+                    <div id="classwiseStudentsContainer" style="display: grid; gap: 2rem;">
+                        <!-- Class groups will be injected here -->
+                    </div>
+                    <div class="action-buttons" style="margin-top: 2rem;">
+                        <button class="btn btn-search-again"
+                            onclick="document.getElementById('allStudentsByClassCard').style.display='none'; window.scrollTo({top: 0, behavior: 'smooth'});">Close</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Syllabus Section -->
+        <section id="syllabus" class="page">
+            <div class="search-container">
+                <i class="fas fa-book-open" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                <h2 style="margin-bottom: 0.5rem;">Syllabus Updates</h2>
+                <p style="color: var(--text-light); margin-bottom: 2rem;">Select a class to view its latest syllabus
+                    updates.</p>
+
+                <form id="syllabusForm" onsubmit="fetchSyllabus(event)">
+                    <div class="form-group">
+                        <label for="syllabusClass">Select Class</label>
+                        <select id="syllabusClass" class="form-control" required>
+                            <option value="" disabled selected>Choose class</option>
+                            <option value="Class 1A">Class 1A</option>
+                            <option value="Class 1B">Class 1B</option>
+                            <option value="Class 2">Class 2</option>
+                            <option value="Class 3">Class 3</option>
+                            <option value="Class 4">Class 4</option>
+                            <option value="Class 5">Class 5</option>
+                            <option value="Class 6">Class 6</option>
+                            <option value="Class 7">Class 7</option>
+                            <option value="Class 8">Class 8</option>
+                            <option value="Class 9">Class 9</option>
+                            <option value="Class 10">Class 10</option>
+                            <option value="Class 11">Class +1</option>
+                            <option value="Class 12">Class +2</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn"><i class="fas fa-search"></i> Check Syllabus</button>
+                </form>
+            </div>
+            <div id="syllabusCard"
+                style="display: none; background: var(--white); border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); max-width: 800px; margin: 2rem auto 5rem; position: relative; overflow: hidden; animation: fadeIn 0.5s ease forwards; padding: 2rem;">
+                <h3 style="color: var(--primary-dark); margin-bottom: 1.5rem; text-align: center; border-bottom: 2px solid rgba(0, 121, 107, 0.1); padding-bottom: 1rem; font-size: 1.5rem;"
+                    id="syl-class-title">Class Syllabus</h3>
+                <div class="table-responsive" style="padding: 0; box-shadow: none;">
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <th style="background: var(--primary); color: white; border-radius: 8px 0 0 0;">Subject
+                                </th>
+                                <th style="background: var(--primary); color: white; border-radius: 0 8px 0 0;">Lesson
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="s-lessons">
+                            <!-- Syllabus data injected here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        <!-- View Students Section -->
+        <section id="viewstudents" class="page">
+            <div class="search-container">
+                <i class="fas fa-users" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                <h2 style="margin-bottom: 0.5rem;">View Students</h2>
+                <p style="color: var(--text-light); margin-bottom: 2rem;">Select a class to view all students.</p>
+
+                <form id="viewStudentsForm" onsubmit="displayStudents(event)">
+                    <div class="form-group">
+                        <label for="viewStudentsClass">Select Class</label>
+                        <select id="viewStudentsClass" class="form-control" required>
+                            <option value="" disabled selected>Choose class</option>
+                            <option value="Class 1A">Class 1A</option>
+                            <option value="Class 1B">Class 1B</option>
+                            <option value="Class 2">Class 2</option>
+                            <option value="Class 3">Class 3</option>
+                            <option value="Class 4">Class 4</option>
+                            <option value="Class 5">Class 5</option>
+                            <option value="Class 6">Class 6</option>
+                            <option value="Class 7">Class 7</option>
+                            <option value="Class 8">Class 8</option>
+                            <option value="Class 9">Class 9</option>
+                            <option value="Class 10">Class 10</option>
+                            <option value="Class +1">Class +1</option>
+                            <option value="Class +2">Class +2</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn"><i class="fas fa-eye"></i> View Students</button>
+                </form>
+            </div>
+            <div id="studentsCard"
+                style="display: none; background: var(--white); border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); max-width: 800px; margin: 2rem auto 0; position: relative; overflow: hidden; animation: fadeIn 0.5s ease forwards; padding: 2rem;">
+                <h3 style="color: var(--primary-dark); margin-bottom: 1.5rem; text-align: center; border-bottom: 2px solid rgba(0, 121, 107, 0.1); padding-bottom: 1rem; font-size: 1.5rem;"
+                    id="students-class-title">Class Students</h3>
+                <div class="table-responsive" style="padding: 0; box-shadow: none;">
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <th
+                                    style="background: var(--primary); color: white; border-radius: 8px 0 0 0; padding: 1rem; text-align: left; width: 15%;">
+                                    SI.NO</th>
+                                <th
+                                    style="background: var(--primary); color: white; border-radius: 0 8px 0 0; padding: 1rem; text-align: left;">
+                                    Students</th>
+                            </tr>
+                        </thead>
+                        <tbody id="students-list">
+                            <!-- Students data injected here -->
+                        </tbody>
+                    </table>
+                </div>
+                <!-- WhatsApp Contact Buttons Container -->
+                <div id="contactButtonsContainer"
+                    style="display: flex; justify-content: center; gap: 0.75rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 2px solid rgba(0, 121, 107, 0.1);">
+                    <!-- Buttons will be dynamically inserted here -->
+                </div>
+                <!-- Action Buttons -->
+                <div class="action-buttons" style="margin-top: 1.5rem; gap: 1rem;">
+                    <button class="btn btn-print-new" onclick="window.print()" style="flex: 1;"><i
+                            class="fas fa-print"></i> Print Student List</button>
+                    <button class="btn btn-search-again"
+                        onclick="document.getElementById('studentsCard').style.display='none'; window.scrollTo({top: 0, behavior: 'smooth'});"
+                        style="flex: 1;">Close</button>
+                </div>
+                <!-- Footer Text -->
+                <div class="print-only-footer">
+                    <p> DESIGNED BY <span
+                            style="color: var(--secondary); font-weight: 700; letter-spacing: 0.5px;">CP AMEEN</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!-- Election Section -->
+        <section id="election" class="page">
+
+            <!-- Login Step -->
+            <div id="electionLogin" class="search-container">
+                <i class="fas fa-user-shield" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                <h2 style="margin-bottom: 0.5rem; text-transform: uppercase;">Election Admin Login</h2>
+                <p style="color: var(--text-light); margin-bottom: 2rem;">busthanul arifeen sunni higher secondary
+                    madrassa pazhayakadappuram</p>
+
+                <form id="electionLoginForm" onsubmit="electionLogin(event)">
+                    <div class="form-group">
+                        <label for="adminUser">Username</label>
+                        <input type="text" id="adminUser" class="form-control" value="" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="adminPass">Password</label>
+                        <input type="password" id="adminPass" class="form-control" value="" required>
+                    </div>
+                    <button type="submit" class="btn"><i class="fas fa-sign-in-alt"></i> Login to Dashboard</button>
+                    <div id="electionError" class="error-msg" style="display: none; margin-top: 1rem;">Invalid
+                        Credentials. Try again.</div>
+                </form>
+            </div>
+            <!-- Setup Step (Post Login) -->
+            <div id="electionSetup" class="search-container" style="display: none; max-width: 600px;">
+                <i class="fas fa-tools" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                <h2 style="margin-bottom: 0.5rem; text-transform: uppercase;">Election Settings</h2>
+                <p style="color: var(--text-light); margin-bottom: 2rem;">CLASS ELECTION PORTAL.</p>
+
+                <form id="electionSetupForm" onsubmit="startElection(event)">
+                    <div id="dynamicCandidatesContainer">
+                        <div class="candidate-entry"
+                            style="background: var(--bg); padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem; border: 1px solid #ddd; position: relative;">
+                            <h4 style="margin-bottom: 1rem; color: var(--primary-dark);" class="cand-label">Candidate 1
+                                Profile</h4>
+                            <div class="form-group">
+                                <input type="text" class="form-control cand-name" placeholder="Candidate Name" required>
+                            </div>
+                            <div class="form-group" style="margin-bottom:0;">
+                                <label
+                                    style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 5px; display: block;">Upload
+                                    Symbol Image</label>
+                                <input type="file" accept="image/*" class="form-control cand-sym-img" required>
+                            </div>
+                        </div>
+                        <div class="candidate-entry"
+                            style="background: var(--bg); padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem; border: 1px solid #ddd; position: relative;">
+                            <h4 style="margin-bottom: 1rem; color: var(--primary-dark);" class="cand-label">Candidate 2
+                                Profile</h4>
+                            <div class="form-group">
+                                <input type="text" class="form-control cand-name" placeholder="Candidate Name" required>
+                            </div>
+                            <div class="form-group" style="margin-bottom:0;">
+                                <label
+                                    style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 5px; display: block;">Upload
+                                    Symbol Image</label>
+                                <input type="file" accept="image/*" class="form-control cand-sym-img" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn"
+                        style="background: var(--secondary-light); color: var(--primary-dark); margin-bottom: 1.5rem; width: 100%; border: 2px dashed var(--secondary);"
+                        onclick="addCandidateField()">
+                        <i class="fas fa-plus"></i> Add Another Candidate
+                    </button>
+                    <div class="form-group">
+                        <label for="electionClass">Operating Class</label>
+                        <select id="electionClass" class="form-control" required>
+                            <option value="" disabled selected>Dropdown to pick class</option>
+                            <option value="Class 2">Class 2</option>
+                            <option value="Class 3">Class 3</option>
+                            <option value="Class 4">Class 4</option>
+                            <option value="Class 5">Class 5</option>
+                            <option value="Class 6">Class 6</option>
+                            <option value="Class 7">Class 7</option>
+                            <option value="Class 8">Class 8</option>
+                            <option value="Class 9">Class 9</option>
+                            <option value="Class 10">Class 10</option>
+                            <option value="Class +1">Class +1</option>
+                            <option value="Class +2">Class +2</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="totalVoters">Total Number of Voters</label>
+                        <input type="number" id="totalVoters" class="form-control" placeholder="Integer value only"
+                            required min="1">
+                    </div>
+                    <button type="submit" class="btn"><i class="fas fa-play"></i> Initialize Polling Block</button>
+                </form>
+            </div>
+            <!-- Voting Booth Step -->
+            <div id="electionBooth" class="search-container" style="display: none; max-width: 600px;">
+                <i class="fas fa-box-ballot" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                <h2 style="margin-bottom: 0.5rem; text-transform: uppercase;">Live Voting Booth</h2>
+                <div
+                    style="background: var(--bg); padding: 0.5rem; border-radius: 8px; margin-bottom: 1.5rem; border: 1px solid #ddd; font-weight: 600;">
+                    <span id="activeClassText" style="color: var(--primary);">Class</span> | Votes Cast: <span
+                        id="currentVoteCount" style="color: var(--secondary);">0</span> / <span
+                        id="targetVoteCount">0</span>
+                </div>
+                <div style="background: var(--white); border-radius: 15px; box-shadow: var(--shadow); padding: 1.5rem;">
+                    <h3
+                        style="color: var(--primary-dark); border-bottom: 2px solid var(--secondary-light); padding-bottom: 1rem; margin-bottom: 1.5rem;">
+                        Select Candidate</h3>
+                    <div id="candidatesList" style="display: flex; flex-direction: column; gap: 1rem;">
+                        <!-- Auto Generated Candidate Buttons -->
+                    </div>
+                </div>
+            </div>
+            <!-- Election Results Step -->
+            <div id="electionResultCard"
+                style="display: none; background: var(--white); border-radius: 15px; padding: 2rem; position: relative;">
+                <div class="result-header">
+                    <div>
+                        <h2
+                            style="color: var(--primary-dark); font-size: 1.5rem; margin-bottom: 5px; text-transform: uppercase;">
+                            Official Election Results</h2>
+                        <p style="color: var(--text-light); font-size: 0.9rem;" id="resClassHeader">Class</p>
+                    </div>
+                </div>
+                <div
+                    style="background: var(--bg); border: 2px dashed #ccc; border-radius: 10px; padding: 1.5rem; margin: 1.5rem 0; text-align: center;">
+                    <div
+                        style="color: var(--text-light); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">
+                        Total Votes Polled</div>
+                    <div id="resTotalVotes"
+                        style="font-size: 2.5rem; font-weight: bold; color: var(--primary-dark); line-height: 1;">0
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr style="background: var(--primary); color: white;">
+                                <th style="border-radius: 8px 0 0 0;">Candidate / Symbol</th>
+                                <th>Votes</th>
+                                <th style="border-radius: 0 8px 0 0;">result</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resCandidatesTable">
+                            <!-- Results Table Generated Here -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-print-new" onclick="window.print()"><i class="fas fa-print"></i> Print
+                        Results</button>
+                    <button class="btn btn-search-again" onclick="resetElection()">Reset Election</button>
+                </div>
+
+                <div class="print-only-footer">
+                    <p> DESIGNED BY <span
+                            style="color: var(--secondary); font-weight: 700; letter-spacing: 0.5px;">CP AMEEN</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer
+        style="text-align: center; padding: 0.5rem 5%; background: transparent; color: var(--text-light); font-size: 0.95rem; margin-top: -3.5rem; flex-shrink: 0;">
+        <p> DESIGNED BY <span style="color: var(--secondary); font-weight: 700; letter-spacing: 0.5px;">CP
+                AMEEN</span></p>
+    </footer>
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImg">
+    </div>
+    <!-- Voting Complete Popup -->
+    <div id="votingCompleteOverlay" class="voting-complete-overlay">
+        <div class="voting-complete-popup">
+            <i class="fas fa-check-circle"></i>
+            <h2>Voting Complete!</h2>
+            <p>All voters have successfully cast their votes. Click "Allow" to view the official election results.</p>
+            <div class="popup-buttons">
+                <button class="btn btn-allow" onclick="showCredentialsVerification()"><i class="fas fa-eye"></i>
+                    Allow</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Credentials Verification Popup -->
+    <div id="credentialsVerificationOverlay" class="voting-complete-overlay">
+        <div class="voting-complete-popup" style="max-width: 400px;">
+            <i class="fas fa-lock" style="font-size: 3rem; color: var(--primary);"></i>
+            <h2 style="font-size: 1.5rem;">Verify Your Identity</h2>
+            <p style="color: var(--text-light); margin-bottom: 1.5rem;">Please re-enter your login details to view
+                results.</p>
+            <form id="credentialsForm" onsubmit="verifyCredentials(event)" style="text-align: left;">
+                <div class="form-group" style="margin-bottom: 1rem;">
+                    <label for="verifyUser"
+                        style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-light);">Username</label>
+                    <input type="text" id="verifyUser" class="form-control" placeholder="Enter username" required>
+                </div>
+                <div class="form-group" style="margin-bottom: 1rem;">
+                    <label for="verifyPass"
+                        style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-light);">Password</label>
+                    <input type="password" id="verifyPass" class="form-control" placeholder="Enter password" required>
+                </div>
+                <div id="credentialError" class="error-msg"
+                    style="display: none; margin-bottom: 1rem; text-align: center;">Incorrect credentials. Try again.
+                </div>
+                <div class="popup-buttons">
+                    <button type="submit" class="btn btn-allow" style="flex: 1;"><i class="fas fa-check"></i>
+                        Verify</button>
+                    <button type="button" class="btn btn-search-again" style="flex: 1; background: var(--text-light);"
+                        onclick="closeCredentialsVerification()"><i class="fas fa-times"></i> Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+
+        const db = [
+            { regNo: "100001", class: "Class 1A", name: "Muhammed aflaj", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100002", class: "Class 1A", name: "mirzan ahmed pk", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100003", class: "Class 1A", name: "muhammed ayaan k", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100004", class: "Class 1A", name: "muhammed razin t", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100005", class: "Class 1A", name: "muhammed malik kv", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100006", class: "Class 1A", name: "Muhammed rabeeh kp", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100007", class: "Class 1A", name: "muhammed rafi k", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100008", class: "Class 1A", name: "Muhammed hamdan p", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100009", class: "Class 1A", name: "Abdul aman puthur", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100010", class: "Class 1A", name: "muhammed mk", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100011", class: "Class 1A", name: "Ahmed sahal pk", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100012", class: "Class 1A", name: "Fareeha", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100013", class: "Class 1A", name: "Farha kp", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100014", class: "Class 1A", name: "Zuhra bathool mk", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100015", class: "Class 1A", name: "shazmin k", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100016", class: "Class 1A", name: "ayisha azwa", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100017", class: "Class 1A", name: "fathima haneena", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+
+            { regNo: "100018", class: "Class 1B", name: "Ahmed bishrul hafi", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100010", class: "Class 1B", name: "Umar sajad kp", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100020", class: "Class 1B", name: "zainu rahman ak", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100021", class: "Class 1B", name: "muhammed zahid", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100022", class: "Class 1B", name: "muhammed aman", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100023", class: "Class 1B", name: "Muhammed musthafa ", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100024", class: "Class 1B", name: "Ahmed ajlan cp", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100025", class: "Class 1B", name: "Muhammed inaam ", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100026", class: "Class 1B", name: "Muhammed zayid eesa k", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100027", class: "Class 1B", name: "muhammed ifaas ihsan m", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100028", class: "Class 1B", name: "hibathullah th", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100029", class: "Class 1B", name: "muhammed raizaan rifal ch", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100030", class: "Class 1B", name: "sidrathull munthaha", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100031", class: "Class 1B", name: "fathima M", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100032", class: "Class 1B", name: "Fathima nasrina pk", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100033", class: "Class 1B", name: "Nashwa mk", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100034", class: "Class 1B", name: "liya c", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100035", class: "Class 1B", name: "Fathima zahra bathool", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+
+            { regNo: "200001", class: "Class 2", name: "muhammed masroor", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "200002", class: "Class 2", name: "muhammed ashik", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "200003", class: "Class 2", name: "muhammed shibli", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "200004", class: "Class 2", name: "muhammed marwan", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "200005", class: "Class 2", name: "fouzan ahmed", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "200006", class: "Class 2", name: "Muhammed minhaj ", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "200007", class: "Class 2", name: "muhammed marwan", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "200008", class: "Class 2", name: "Muhammed shayan ", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "200009", class: "Class 2", name: "ayman muhammed", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "200010", class: "Class 2", name: "muhammed shahzad", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "200011", class: "Class 2", name: "zayan", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "200012", class: "Class 2", name: "ibrahim bin thwaha", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "200013", class: "Class 2", name: "bishrul haris", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "200014", class: "Class 2", name: "abdulla", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "200015", class: "Class 2", name: "hadi shahzad", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "200016", class: "Class 2", name: "muhammed shahin shahlan", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "200017", class: "Class 2", name: "muhammed shahzeen", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "200018", class: "Class 2", name: "muhammed rayan", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "200019", class: "Class 2", name: "ayisha", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "200020", class: "Class 2", name: "Farhana", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "200021", class: "Class 2", name: "ayisha zuhra", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "200022", class: "Class 2", name: "zulfa mahrin", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "200023", class: "Class 2", name: "thaufeera janna", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "200024", class: "Class 2", name: "hamda fathima", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "200025", class: "Class 2", name: "fathima ahlam", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "200026", class: "Class 2", name: "hiba", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "200027", class: "Class 2", name: "Amina minna", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "200028", class: "Class 2", name: "fathima shahza", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "200029", class: "Class 2", name: "fathima zahra", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "200030", class: "Class 2", name: "ayisha alishba", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "200031", class: "Class 2", name: "fathima naura", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "200032", class: "Class 2", name: "khadeejath khaira", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+
+            { regNo: "300001", class: "Class 3", name: "muhammed rabeeu", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "300002", class: "Class 3", name: "muhammed ck", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "300003", class: "Class 3", name: "muhammed khidash", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "300004", class: "Class 3", name: "muhammed mifthah", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "300005", class: "Class 3", name: "saiful aman", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "300006", class: "Class 3", name: "Muhammed raihan ", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "300007", class: "Class 3", name: "Abdulla", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "300008", class: "Class 3", name: "zaman", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "300009", class: "Class 3", name: "hamdan", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "300010", class: "Class 3", name: "muhammed hadi", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "300011", class: "Class 3", name: "swalahudheen", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "300012", class: "Class 3", name: "mihran almir", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "300013", class: "Class 3", name: "muhammed mazin", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "300014", class: "Class 3", name: "muhammed fazil", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "300015", class: "Class 3", name: "fathima shaziya", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "300016", class: "Class 3", name: "ayisha kp", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "300017", class: "Class 3", name: "khadeeja farha", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "300018", class: "Class 3", name: "razwa safin", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "300019", class: "Class 3", name: "ahla", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "300020", class: "Class 3", name: "minna fathima", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "300021", class: "Class 3", name: "shahzana", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "300022", class: "Class 3", name: "ayisha", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "300023", class: "Class 3", name: "fathima ansiya", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "300024", class: "Class 3", name: "fathima razana", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "300025", class: "Class 3", name: "ayisha mahdiya", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "300026", class: "Class 3", name: "ayisha laiba", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "300027", class: "Class 3", name: "athiya ayisha", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "300028", class: "Class 3", name: "ayisha rajabiya", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "300029", class: "Class 3", name: "fathima M", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "300030", class: "Class 3", name: "jaza fathima", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "300031", class: "Class 3", name: "sana fathima", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "300032", class: "Class 3", name: "uzair NP", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+
+            { regNo: "400001", class: "Class 4", name: "muhammed bilal", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "400002", class: "Class 4", name: "muhammed nabeel", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "400003", class: "Class 4", name: "muhammed fayiz", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "400004", class: "Class 4", name: "muhammed yaseen", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "400005", class: "Class 4", name: "muhammed ajzal", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "400006", class: "Class 4", name: "Muhammed bishr ", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "400007", class: "Class 4", name: "hammad", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "400008", class: "Class 4", name: "muhammed", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "400009", class: "Class 4", name: "muhammed razeen", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "400010", class: "Class 4", name: "Ali hassan shaduli", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "400011", class: "Class 4", name: "umarul farooq", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "400012", class: "Class 4", name: "muhammed mushthaq", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "400013", class: "Class 4", name: "muhammed razi", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "400014", class: "Class 4", name: "muhammed ayan", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "400015", class: "Class 4", name: "shazin", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "400016", class: "Class 4", name: "muhammed fizan", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "400017", class: "Class 4", name: "muhammed shuraif", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "400018", class: "Class 4", name: "muhammed darvesh", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "400019", class: "Class 4", name: "muhammed muzammil", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "400020", class: "Class 4", name: "sana fathima", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "400021", class: "Class 4", name: "swaliha", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "400022", class: "Class 4", name: "ayisha shameema", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "400023", class: "Class 4", name: "ayisha ifra", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "400024", class: "Class 4", name: "ayisha riyas", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "400025", class: "Class 4", name: "ayisha asriya", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "400026", class: "Class 4", name: "asiya liya", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "400027", class: "Class 4", name: "fathima zahra bathool", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "400028", class: "Class 4", name: "khadeeja marwa", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "400029", class: "Class 4", name: "fathima faisal", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "400030", class: "Class 4", name: "fathima zahra", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "400031", class: "Class 4", name: "zulfa fathima", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+
+            { regNo: "500001", class: "Class 5", name: "Abdulla bin thwaha", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "500002", class: "Class 5", name: "bishrul hafi", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "500003", class: "Class 5", name: "muhammed hamdan", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "500004", class: "Class 5", name: "muhammed zuhair", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "500005", class: "Class 5", name: "muhammed hashir", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "500006", class: "Class 5", name: "izzath rahman", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "500007", class: "Class 5", name: "muhammed ajmal", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "500008", class: "Class 5", name: "muhammed rizwan", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "500009", class: "Class 5", name: "muhammed salim", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "500010", class: "Class 5", name: "muhammed safwan", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "500011", class: "Class 5", name: "muhammed jasim", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "500012", class: "Class 5", name: "mubashir", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "500013", class: "Class 5", name: "fathima K", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "500014", class: "Class 5", name: "fathima haniya", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "500015", class: "Class 5", name: "nazha khadeeja", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "500016", class: "Class 5", name: "zahra fathima", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "500017", class: "Class 5", name: "shameema KP", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "500018", class: "Class 5", name: "Ayisha kp", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "500019", class: "Class 5", name: "zanha fathima", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "500020", class: "Class 5", name: "khadeeja thasniya", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "500021", class: "Class 5", name: "laiba mariyam", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "500022", class: "Class 5", name: "fathima K", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "500023", class: "Class 5", name: "ayisha zakiyya", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "500024", class: "Class 5", name: "ayisha zulfa lulu", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "500025", class: "Class 5", name: "fathima mihra", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "500026", class: "Class 5", name: "shanza sherin", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "500027", class: "Class 5", name: "maryam noora", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "500028", class: "Class 5", name: "diya fathima", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "500029", class: "Class 5", name: "khadeejathul kubra", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "500030", class: "Class 5", name: "fathima hiba sherin", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+
+            { regNo: "600001", class: "Class 6", name: "abdulla ameen", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "600002", class: "Class 6", name: "misthah ahmed", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "600003", class: "Class 6", name: "muhammed shahzeen", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "600004", class: "Class 6", name: "muhammed farooq", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "600005", class: "Class 6", name: "anas KP", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "600006", class: "Class 6", name: "muhammed AC", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "600007", class: "Class 6", name: "muhammed shammas l", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "600008", class: "Class 6", name: "zayan ahmed", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "600009", class: "Class 6", name: "muhammed shahabas", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "600010", class: "Class 6", name: "Ahmed faheem", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "600011", class: "Class 6", name: "Fathima PA", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "600012", class: "Class 6", name: "hasanath", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "600013", class: "Class 6", name: "fathima T", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "600014", class: "Class 6", name: "ayisha thubra", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "600015", class: "Class 6", name: "rabia noora", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "600016", class: "Class 6", name: "maryam", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "600017", class: "Class 6", name: "fathima fahma", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "600018", class: "Class 6", name: "nafeesathul misriya", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "600019", class: "Class 6", name: "fathima munavvara", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+
+            { regNo: "700001", class: "Class 7", name: "umar mukhthar PA", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "700002", class: "Class 7", name: "muhammed rasheed", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "700003", class: "Class 7", name: "muhammed rashid", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "700004", class: "Class 7", name: "abdurahman hadi", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "700005", class: "Class 7", name: "thameem", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "700006", class: "Class 7", name: "bishrul hafi", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "700007", class: "Class 7", name: "Ahmed thwaha", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "700008", class: "Class 7", name: "muhammed sa'eed", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "700009", class: "Class 7", name: "muhammed favaz", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "700010", class: "Class 7", name: "muhammed zayan", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "700011", class: "Class 7", name: "shahzan aboobacker", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "700012", class: "Class 7", name: "abdul majid", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "700013", class: "Class 7", name: "fathima safa CA", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "700014", class: "Class 7", name: "ayisha afra", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "700015", class: "Class 7", name: "nafeesath safwana", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "700016", class: "Class 7", name: "fathima swaliha", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "700017", class: "Class 7", name: "fathima safa A", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "700018", class: "Class 7", name: "khadeeja binth thwaha", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "700019", class: "Class 7", name: "azwa fathima", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "700020", class: "Class 7", name: "nafeesath naeema", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "700021", class: "Class 7", name: "amina noora", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "700022", class: "Class 7", name: "safa", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "700023", class: "Class 7", name: "haleema amna", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "700024", class: "Class 7", name: "rafia", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "700025", class: "Class 7", name: "Husna fathima ", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+
+            { regNo: "800001", class: "Class 8", name: "mujthaba mujeeb rahman", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "800002", class: "Class 8", name: "muhammed suhail", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "800003", class: "Class 8", name: "shahul fahad hasan", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "800004", class: "Class 8", name: "muhammed PK", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "800005", class: "Class 8", name: "muhammed anas", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "800006", class: "Class 8", name: "muhammed hafiz", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "800007", class: "Class 8", name: "muhammed rila", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "800008", class: "Class 8", name: "fathima noora", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "800009", class: "Class 8", name: "khadeejath nafi'a", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "800010", class: "Class 8", name: "farzana", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "800011", class: "Class 8", name: "fathima sharafiya", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "800012", class: "Class 8", name: "fathima zakiya", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "800013", class: "Class 8", name: "nusaiba", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "800014", class: "Class 8", name: "najiya", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "800015", class: "Class 8", name: "fathima amna", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "800016", class: "Class 8", name: "shabeela", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+
+            { regNo: "900001", class: "Class 9", name: "farzeen ahmed", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "900002", class: "Class 9", name: "muhammed fayiz", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "900003", class: "Class 9", name: "ahmed razi", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "900004", class: "Class 9", name: "ayisha shifana", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "900005", class: "Class 9", name: "nafia", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "900006", class: "Class 9", name: "salwa", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "900007", class: "Class 9", name: "rila maryam", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "900008", class: "Class 9", name: "ruzaina", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "900009", class: "Class 9", name: "fathima KP", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "900010", class: "Class 9", name: "fida fahima", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "900011", class: "Class 9", name: "saja", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "900012", class: "Class 9", name: "fathima shaziya", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "900013", class: "Class 9", name: "zainab shifa", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "900014", class: "Class 9", name: "shifana kallayi", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+
+            { regNo: "100101", class: "Class 10", name: "muhammed sufiyan", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100102", class: "Class 10", name: "muhammed ansari", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100103", class: "Class 10", name: "muhammed thwalhath", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100104", class: "Class 10", name: "muhammed shahzad.", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100105", class: "Class 10", name: "muhammed shahman", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100106", class: "Class 10", name: "ayisha fida", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100107", class: "Class 10", name: "maiyam rinsha", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100108", class: "Class 10", name: "fathima PB", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100109", class: "Class 10", name: "fathima adila", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100110", class: "Class 10", name: "salwa KP", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100111", class: "Class 10", name: "khadeejathy najiya", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100112", class: "Class 10", name: "fathimath jazla", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100113", class: "Class 10", name: "salwa fakhrudheen", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+
+            { regNo: "100201", class: "Class +1", name: "ismayil PM", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100202", class: "Class +1", name: "MUhammed bin thwaha", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100203", class: "Class +1", name: "muhammed Ameen CP", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100204", class: "Class +1", name: "thwaha noorul ameen", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100205", class: "Class +1", name: "Juraij rafeeq", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100206", class: "Class +1", name: "Mubashir", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100207", class: "Class +1", name: "fathima shakira", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100208", class: "Class +1", name: "ummu habeeba", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+
+            { regNo: "100301", class: "Class +2", name: "fathima thanzeeha CP", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100302", class: "Class +2", name: "Ayisha mirzana", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100303", class: "Class +2", name: "fathima shifa PA", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+            { regNo: "100304", class: "Class +2", name: "khadeejath sufaija", attendance: 0, marks: { "Quran": 0, "Fiqh": 0, "Thareekh": 0, "Aqeeda": 0, "Arabic": 0 }, status: "PASS" },
+
+        ];
+
+        // Sort students by class
+        const classOrder = ["Class 1A", "Class 1B", "Class 2", "Class 3", "Class 4", "Class 5", "Class 6", "Class 7", "Class 8", "Class 9", "Class 10", "Class +1", "Class +2"];
+        db.sort((a, b) => {
+            return classOrder.indexOf(a.class) - classOrder.indexOf(b.class);
+        });
+
+        // Sample Syllabus Database
+        const syllabusDb = {
+            "Class 1A": [
+                { subject: "تَفْهِيمُ الْقِرَاءَنِ (الْجُزْءُ الْأَوَّلُ)", lesson: "الْوَحْدَةُ الْأُولَى (٥، ٦)، الْوَحْدَةُ الثَّانِيَةُ,وَالثَّالِثَةُ وَالرَّابِعَةُ (١، ٢، ٣)" },
+                { subject: "دُرُوسُ الْإِسْلَامِ", lesson: "الْوَحْدَةُ الثَّالِثَةُ" },
+                { subject: "الْكِتَابَةُ", lesson: "NO LESSONS IN THIS MONTH" }
+                
+            ],
+            "Class 1B": [
+                { subject: "تَفْهِيمُ الْقِرَاءَةِ (الْجُزْءُ الْأَوَّلُ)", lesson: "الْوَحْدَةُ الْأُولَى (٥، ٦)، الْوَحْدَةُ الثَّانِيَةُ,وَالثَّالِثَةُ وَالرَّابِعَةُ (١، ٢، ٣)" },
+                { subject: "دُرُوسُ الْإِسْلَامِ", lesson: "الْوَحْدَةُ الثَّالِثَةُ" },
+                { subject: "الْكِتَابَةُ", lesson: "NO LESSONS IN THIS MONTH" }
+            ],
+
+
+            "Class 2": [
+                { subject: "تَجْوِيدُ الْقُرْآنِ (الْجُزْءُ الْأَوَّلُ)", lesson: "مِنْ سُورَةِ الْفَاتِحَةِ إِلَى سُورَةِ الْكَافِرُونَ" },
+                { subject: "دُرُوسُ الْإِسْلَامِ (الْجُزْءُ الْأَوَّلُ)", lesson: "الدَّرْسُ الْأَوَّلُ وَالثَّانِي وَالثَّالِثُ" },
+                { subject: "الْكِتَابَةُ", lesson: "NO LESSONS IN THIS MONTH" },
+                { subject: "حِفْظُ الْقُرْآنِ", lesson: "سُورَةُ النَّاسِ" }
+            ],
+
+            "Class 3": [
+                { subject: "تَجْوِيدُ الْقُرْآنِ (الْجُزْءُ الْأَوَّلُ)", lesson: "الْوَحْدَةُ ٤ ، ٣" },
+                { subject: "تِلَاوَةُ الْقُرْآنِ", lesson: "سُورَةُ النَّجْمِ وَالْقَمَرِ وَالرَّحْمَنِ" },
+                { subject: "دُرُوسُ الْإِسْلَامِ (الْجُزْءُ الْأَوَّلُ)", lesson: "الدَّرْسُ ٤- ٨" },
+                { subject: "أَحْكَامُ الْإِسْلَامِ (الْجُزْءُ الْأَوَّلُ)", lesson: "الدَّرْسُ ٢" },
+                { subject: "حِفْظُ الْقُرْآنِ", lesson: "سُورَةُ الْعَصْرِ وَالدُّعَاءُ بَعْدَ الْوُضُوءِ" }
+            ],
+            "Class 4": [
+                { subject: "تَجْوِيدُ الْقُرْآنِ (الْجُزْءُ الْأَوَّلُ)", lesson: "لْوَحْدَةُ ٢، ٣" },
+                { subject: "تِلاوَةُ الْقُرْآنِ", lesson: "سُورَةُ الرُّومِ وَلُقْمَان" },
+                { subject: "حِفْظُ الْقُرْآنِ", lesson: "الْأَذْكَار" },
+                { subject: "دُرُوسُ الْإِسْلَامِ (الْجُزْءُ الْأَوَّلُ)", lesson: "الدَّرْسُ ٤ - ٨" },
+                { subject: "أَحْكَامُ الْإِسْلَامِ (الْجُزْءُ الْأَوَّلُ)", lesson: "الدَّرْسُ ٢، ٣" }
+            ],
+            "Class 5": [
+                { subject: "تَجْوِيدُ الْقُرْآنِ (الْجُزْءُ الْأَوَّلُ)", lesson: "الْوَحْدَةُ ٣، ٤, ٥" },
+                { subject: "تِلَاوَةُ الْقُرْآنِ", lesson: "سُورَةُ يُونُسَ ٥٩ إلَى آخِرِهَا / سُورَةُ هُود" },
+                { subject: "حِفْظُ الْقُرْآنِ", lesson: "سُورَةُ يُس ٦ - ١٥ / رَاتِبُ الْحَدَّاد" },
+                { subject: "دُرُوسُ الْإِسْلَامِ (الْجُزْءُ الْأَوَّلُ)", lesson: "الدَّرْسُ ٤ - ٨" },
+                { subject: "أَحْكَامُ الْإِسْلَامِ (الْجُزْءُ الْأَوَّلُ)", lesson: "الدَّرْسُ ٣، ٤، ٥" }
+            ],
+            "Class 6": [
+                { subject: "تِلَاوَةُ الْقُرْآنِ", lesson: "الْمَائِدَةَ (٢٤ - ١٠٨)" },
+                { subject: "حِفْظُ الْقُرْآنِ", lesson: "سُورَةُ الشَّرْحِ وَالتِّينِ / وَسُورَةُ الْمُلْكِ ٤ - ٩" },
+                { subject: "تَجْوِيدُ الْقُرْآنِ", lesson: "الْوَحْدَةُ ٢ ، ٣" },
+                { subject: "دُرُوسُ الْعَقَائِدِ", lesson: "الْوَحْدَةُ ٢ ، ٣" },
+                { subject: "الْفِقْهُ الْإِسْلَامِي", lesson: "الْوَحْدَةُ ٢ ، ٣" },
+                { subject: "تَزْكِيَةُ الْوِلْدَانِ", lesson: "الْوَحْدَةُ ٢ ، ٣" },
+                { subject: "تَارِيخُ الْإِسْلَامِ", lesson: "الْوَحْدَةُ ٢ ، ٣" }
+            ],
+            "Class 7": [
+                { subject: "تِلَاوَةُ الْقُرْآنِ", lesson: "سُورَةُ الْبَقَرَةِ (٦٢ – ١٥٣)" },
+                { subject: "حِفْظُ الْقُرْآنِ", lesson: "سُورَةُ يس ٧ – ١٨ / وَسُورَةُ الْوَاقِعَةِ ٨ – ٢١" },
+                { subject: "تَجْوِيدُ الْقُرْآنِ", lesson: "الْوَحْدَةُ ٢ ، ٣" },
+                { subject: "دُرُوسُ الْعَقَائِدِ", lesson: "الْوَحْدَةُ ٢ ، ٣" },
+                { subject: "الْفِقْهُ الْإِسْلَامِي", lesson: "الْوَحْدَةُ ٢ ، ٣" },
+                { subject: "تَزْكِيَةُ الْوِلْدَانِ", lesson:  "الْوَحْدَةُ ٢ ، ٣" },
+                { subject: "تَارِيخُ الْإِسْلَامِ", lesson: "الْوَحْدَةُ ٢ ، ٣" }
+            
+            ],
+            "Class 8": [
+                { subject: "تِلَاوَةُ الْقُرْآنِ", lesson: "سُورَةُ الْبَقَرَةِ (آيَة : ٢٨ – ٥٤)" },
+                { subject: "حِفْظُ الْقُرْآنِ", lesson: "سُورَةُ الْمُلْكِ (آيَة : ٤ – ٦)" },
+                { subject: "الْفِقْهُ الْإِسْلَامِي", lesson: "الْوَحْدَةُ ٢" },
+                { subject: "تَزْكِيَةُ الْوِلْدَانِ", lesson: "الْوَحْدَةُ ٢" },
+                { subject: "دُرُوسُ الْإِسْلَامِ", lesson: "الْوَحْدَةُ ٢ ، ٣" }
+            ],
+            "Class 9": [
+                { subject: "تِلَاوَةُ الْقُرْآنِ", lesson: "سُورَةُ آل عِمْرَان (آيَة : ٢١ - ٤٠)" },
+                { subject: "حِفْظُ الْقُرْآنِ", lesson: "سُورَةُ الْوَاقِعَة (آيَة : ١١ - ٢٠)" },
+                { subject: "الْفِقْهُ الْإِسْلَامِي", lesson: "الْوَحْدَةُ ٢" },
+                { subject: "تَزْكِيَةُ الْوِلْدَانِ", lesson: "الْوَحْدَةُ ٢" },
+                { subject: "دُرُوسُ الْإِسْلَامِ", lesson: "الْوَحْدَةُ ٢ ، ٣" }
+            ],
+            "Class 10": [
+                { subject: "تِلَاوَةُ الْقُرْآنِ", lesson: "سُورَةُ النِّسَاءِ / آيَة : ١٦ – ٣١" },
+                { subject: "حِفْظُ الْقُرْآنِ", lesson: "سُورَةُ يس / آيَة : ٩ – ١٦" },
+                { subject: "الْفِقْهُ الْإِسْلَامِيُّ", lesson: "اَلْوَحْدَة / ٢" },
+                { subject: "تَزْكِيَةُ الْوِلْدَانِ", lesson: "اَلْوَحْدَة / ٢" },
+                { subject: "دُرُوسُ الْإِسْلَامِ", lesson: "اَلْوَحْدَة / ٢ ، ٣" }
+            ],
+            "Class 11": [
+                { subject: "تِلَاوَةُ الْقُرْآنِ", lesson: "سُورَةُ الْمَائِدَة آيَة : ١٣ – ٢٤" },
+                { subject: "دُرُوسُ الْإِسْلَامِ", lesson: "الْوَحْدَةُ الثَّالِثَةُ وَالرَّابِعَةُوَالْخَامِسَةُ" }
+
+            ],
+            "Class 12": [
+                { subject: "تِلَاوَةُ الْقُرْآنِ", lesson: "سُورَةُ الْأَنْعَام آيَة : ١٧ – ٣٢" },
+                { subject: "دُرُوسُ الْإِسْلَامِ", lesson: "الْوَحْدَةُ الثَّالِثَةُ وَالرَّابِعَةُ وَ الْخَامِسَةُ" }
+            ]
+
+        };
+
+        // Class Contact Numbers for WhatsApp
+        const classContacts = {
+            "Class 1A": { admin1: "9448816596", admin2: "8590106300" },
+            "Class 1B": { admin1: "9447917205", admin2: "8590106300" },
+            "Class 2": { admin1: "9448664161", admin2: "8590106300" },
+            "Class 3": { admin1: "9946753810", admin2: "8590106300" },
+            "Class 4": { admin1: "9448664161", admin2: "8590106300" },
+            "Class 5": { admin1: "9946753810", admin2: "8590106300" },
+            "Class 6": { admin1: "9447917205", admin2: "8590106300" },
+            "Class 7": { admin1: "9633880042", admin2: "8590106300" },
+            "Class 8": { admin1: "8590106300", admin2: "8590106300" },
+            "Class 9": { admin1: "9633880042", admin2: "8590106300" },
+            "Class 10": { admin1: "8590106300", admin2: "8590106300" },
+            "Class +1": { admin1: "9744257447", admin2: "8590106300" },
+            "Class +2": { admin1: "9744257447", admin2: "8590106300" }
+        };
+
+        // Sidebar Navigation Logic
+        const sidebar = document.querySelector('.sidebar');
+        const overlay = document.querySelector('.overlay');
+        const navItems = document.querySelectorAll('.sidebar-nav li');
+        function toggleSidebar() {
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+        function navigate(pageId) {
+            // Update active link
+            navItems.forEach(item => item.classList.remove('active-nav'));
+            event.currentTarget.classList.add('active-nav');
+            // Hide all pages, show selected
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            // Close sidebar on mobile
+            if (window.innerWidth <= 768) {
+                toggleSidebar();
+            }
+
+            // Hide result card if navigating away
+            if (pageId !== 'result') {
+                document.getElementById('resultCard').style.display = 'none';
+                document.getElementById('errorMsg').style.display = 'none';
+                document.getElementById('resultForm').reset();
+            }
+            // Route handling for election to prevent cheating if leaving early
+            if (pageId === 'election' && electionState.isActive && !electionState.isFinished) {
+                document.getElementById('electionLogin').style.display = 'none';
+                if (document.getElementById('electionSetup')) document.getElementById('electionSetup').style.display = 'none';
+                document.getElementById('electionBooth').style.display = 'block';
+            }
+            if (pageId !== 'election') {
+                if (document.getElementById('syllabusCard')) {
+                    document.getElementById('syllabusCard').style.display = 'none';
+                }
+                document.getElementById('syllabusForm').reset();
+            }
+        }
+        // Election Logic App State
+        const electionState = {
+            isActive: false,
+            isFinished: false,
+            targetVoters: 0,
+            currentVotesCast: 0,
+            activeClass: "",
+            candidates: [],
+            adminUsername: "",
+            adminPassword: ""
+        };
+        function electionLogin(e) {
+            e.preventDefault();
+            const user = document.getElementById('adminUser').value;
+            const pass = document.getElementById('adminPass').value;
+            if (user === "busthan" && pass === "6373") {
+                document.getElementById('electionError').style.display = "none";
+                // Store credentials for later verification
+                electionState.adminUsername = user;
+                electionState.adminPassword = pass;
+                document.getElementById('electionLogin').style.display = "none";
+                document.getElementById('electionSetup').style.display = "block";
+            } else {
+                document.getElementById('electionError').style.display = "block";
+            }
+        }
+        function addCandidateField() {
+            const container = document.getElementById('dynamicCandidatesContainer');
+            const count = container.querySelectorAll('.candidate-entry').length + 1;
+
+            const div = document.createElement('div');
+            div.className = 'candidate-entry';
+            div.style.cssText = 'background: var(--bg); padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem; border: 1px solid #ddd; position: relative; animation: fadeIn 0.3s ease;';
+
+            div.innerHTML = `
+                <i class="fas fa-times" style="position: absolute; right: 1.5rem; top: 1.5rem; color: var(--danger); cursor: pointer; font-size: 1.2rem;" onclick="this.parentElement.remove(); updateCandidateLabels();"></i>
+                <h4 style="margin-bottom: 1rem; color: var(--primary-dark);" class="cand-label">Candidate ${count} Profile</h4>
+                <div class="form-group">
+                    <input type="text" class="form-control cand-name" placeholder="Candidate Name" required>
+                </div>
+                <div class="form-group" style="margin-bottom:0;">
+                    <label style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 5px; display: block;">Upload Symbol Image</label>
+                    <input type="file" accept="image/*" class="form-control cand-sym-img" required>
+                </div>
+            `;
+            container.appendChild(div);
+            updateCandidateLabels();
+        }
+        function updateCandidateLabels() {
+            const entries = document.querySelectorAll('.candidate-entry');
+            entries.forEach((entry, index) => {
+                entry.querySelector('.cand-label').textContent = 'Candidate ' + (index + 1) + ' Profile';
+            });
+        }
+        function startElection(e) {
+            e.preventDefault();
+            const target = parseInt(document.getElementById('totalVoters').value);
+            const selClass = document.getElementById('electionClass').value;
+
+            const entries = document.querySelectorAll('.candidate-entry');
+            if (entries.length < 2) {
+                alert("You need at least 2 candidates to organize a proper election.");
+                return;
+            }
+            const dynamicCandidates = [];
+            let isValid = true;
+            entries.forEach((entry, index) => {
+                const name = entry.querySelector('.cand-name').value.trim();
+                const fileInput = entry.querySelector('.cand-sym-img');
+
+                let symSrc = "";
+                if (fileInput.files && fileInput.files[0]) {
+                    symSrc = URL.createObjectURL(fileInput.files[0]);
+                } else {
+                    isValid = false;
+                }
+
+                if (!name) isValid = false;
+
+                // Format ID sequentially (01, 02...)
+                const formattedId = (index + 1).toString().padStart(2, '0');
+                dynamicCandidates.push({ id: formattedId, name: name, symbol: symSrc, votes: 0 });
+            });
+            if (target > 0 && isValid) {
+                // Initialize State
+                electionState.isActive = true;
+                electionState.targetVoters = target;
+                electionState.currentVotesCast = 0;
+                electionState.activeClass = selClass;
+                electionState.candidates = dynamicCandidates;
+                // Update UI text
+                document.getElementById('activeClassText').textContent = selClass;
+                document.getElementById('targetVoteCount').textContent = target;
+                document.getElementById('currentVoteCount').textContent = "0";
+                // Build Candidate Buttons Loop
+                const candidatesList = document.getElementById('candidatesList');
+                candidatesList.innerHTML = '';
+                electionState.candidates.forEach(c => {
+                    candidatesList.innerHTML += `
+                        <div style="display: flex; justify-content: space-between; align-items: center; border: 1px solid #eee; padding: 1rem; border-radius: 10px; background: var(--bg);">
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <img src="${c.symbol}" alt="${c.name} Symbol" style="width: 50px; height: 50px; object-fit: contain; border: 2px solid var(--secondary); border-radius: 50%; background: white; padding: 2px;">
+                                <div>
+                                    <h4 style="margin: 0; font-size: 1.2rem; color: var(--text-main);">${c.name}</h4>
+                                </div>
+                            </div>
+                            <button class="btn" onclick="castVote('${c.id}')" style="width: auto; padding: 0.5rem 1rem;"><i class="fas fa-vote-yea"></i> Vote</button>
+                        </div>
+                    `;
+                });
+                // Display Booth
+                document.getElementById('electionSetup').style.display = "none";
+                document.getElementById('electionBooth').style.display = "block";
+            }
+        }
+        function playBeep() {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+
+            oscillator.frequency.value = 800; // Frequency in Hz
+            oscillator.type = 'sine'; // Sine wave for smooth beep
+
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 5); // 5 second long beep
+
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 5);
+        }
+        function castVote(candidateId) {
+            if (!electionState.isActive || electionState.isFinished) return;
+            const cData = electionState.candidates.find(c => c.id === candidateId);
+            if (cData) {
+                setTimeout(playBeep, 1000); // Play beep sound after 1 second
+                cData.votes++;
+                electionState.currentVotesCast++;
+                document.getElementById('currentVoteCount').textContent = electionState.currentVotesCast;
+                if (electionState.currentVotesCast >= electionState.targetVoters) {
+                    // Delay popup until beep sound finishes (1s delay + 5s beep = 6s total)
+                    setTimeout(endElection, 6000);
+                }
+            }
+        }
+        function endElection() {
+            electionState.isFinished = true;
+            document.getElementById('electionBooth').style.display = "none";
+
+            // Sort to find Winner
+            electionState.candidates.sort((a, b) => b.votes - a.votes);
+
+            // Show popup instead of results directly
+            document.getElementById('votingCompleteOverlay').classList.add('show');
+        }
+        function showCredentialsVerification() {
+            // Hide voting complete popup and show credentials verification popup
+            document.getElementById('votingCompleteOverlay').classList.remove('show');
+            document.getElementById('credentialsVerificationOverlay').classList.add('show');
+            document.getElementById('credentialError').style.display = 'none';
+            document.getElementById('credentialsForm').reset();
+        }
+
+        function closeCredentialsVerification() {
+            document.getElementById('credentialsVerificationOverlay').classList.remove('show');
+            document.getElementById('votingCompleteOverlay').classList.add('show');
+        }
+
+        function verifyCredentials(e) {
+            e.preventDefault();
+            const user = document.getElementById('verifyUser').value;
+            const pass = document.getElementById('verifyPass').value;
+
+            if (user === electionState.adminUsername && pass === electionState.adminPassword) {
+                document.getElementById('credentialError').style.display = 'none';
+                document.getElementById('credentialsVerificationOverlay').classList.remove('show');
+                allowResultsDisplay();
+            } else {
+                document.getElementById('credentialError').style.display = 'block';
+            }
+        }
+
+        function allowResultsDisplay() {
+            document.getElementById('resClassHeader').textContent = electionState.activeClass + "  Results";
+            document.getElementById('resTotalVotes').textContent = electionState.currentVotesCast;
+            if (document.getElementById('printElectionYear')) document.getElementById('printElectionYear').textContent = new Date().getFullYear();
+            // Populate Report Table
+            const tableBody = document.getElementById('resCandidatesTable');
+            tableBody.innerHTML = '';
+            const topVotes = electionState.candidates[0].votes;
+
+            electionState.candidates.forEach((c, index) => {
+                let outcomeLabel = "";
+                let outcomeColor = "";
+                let bgStyle = "";
+                if (index === 0 && c.votes > 0 && c.votes > electionState.candidates[1]?.votes) {
+                    outcomeLabel = "WINNER";
+                    outcomeColor = "var(--success)";
+                    bgStyle = "background: rgba(40, 167, 69, 0.1);";
+                } else if (index === 0 && c.votes === electionState.candidates[1]?.votes) {
+                    outcomeLabel = "TIE";
+                    outcomeColor = "orange";
+                } else {
+                    outcomeLabel = "LOSS";
+                    outcomeColor = "var(--danger)";
+                }
+                tableBody.innerHTML += `
+                    <tr style="${bgStyle}">
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <img src="${c.symbol}" alt="${c.name} Symbol" style="width: 45px; height: 45px; object-fit: contain; border: 1px solid #ddd; border-radius: 5px; background: white; flex-shrink: 0;">
+                                <div style="font-weight: 600; color: var(--text-main);">${c.name}</div>
+                            </div>
+                        </td>
+                        <td style="font-weight: bold; font-size: 1.2rem;">${c.votes}</td>
+                        <td style="color: ${outcomeColor}; font-weight: bold;">${outcomeLabel}</td>
+                    </tr>
+                `;
+            });
+            document.getElementById('electionResultCard').style.display = "block";
+            setTimeout(() => document.getElementById('electionResultCard').scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+        }
+        function resetElection() {
+            electionState.isActive = false;
+            electionState.isFinished = false;
+            document.getElementById('electionResultCard').style.display = "none";
+            document.getElementById('electionLoginForm').reset();
+            if (document.getElementById('electionSetupForm')) {
+                document.getElementById('electionSetupForm').reset();
+                document.getElementById('electionSetup').style.display = "none";
+            }
+            document.getElementById('electionLogin').style.display = "block";
+        }
+        // Syllabus Logic
+        function fetchSyllabus(e) {
+            e.preventDefault();
+            const className = document.getElementById('syllabusClass').value;
+            const syllabusCard = document.getElementById('syllabusCard');
+            const sLessons = document.getElementById('s-lessons');
+
+            document.getElementById('syl-class-title').textContent = className + " Syllabus ";
+
+            const data = syllabusDb[className] || [{ subject: "Pending", lesson: "Syllabus module not yet uploaded for this class." }];
+
+            sLessons.innerHTML = '';
+            data.forEach(item => {
+                sLessons.innerHTML += `
+                    <tr>
+                        <td style="font-weight: 600; color: #555;">${item.subject}</td>
+                        <td style="color: #000;">${item.lesson}</td>
+                    </tr>
+                `;
+            });
+
+            syllabusCard.style.display = 'block';
+            setTimeout(() => syllabusCard.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+        }
+        // View Students Logic
+        function displayStudents(e) {
+            e.preventDefault();
+            const className = document.getElementById('viewStudentsClass').value;
+            const studentsCard = document.getElementById('studentsCard');
+            const studentsList = document.getElementById('students-list');
+            const contactButtonsContainer = document.getElementById('contactButtonsContainer');
+
+            document.getElementById('students-class-title').textContent = className + " Students";
+
+            // Filter students by class from db
+            const classStudents = db.filter(student => student.class === className);
+
+            studentsList.innerHTML = '';
+            classStudents.forEach((student, index) => {
+                studentsList.innerHTML += `
+                    <tr style="border-bottom: 1px solid #eee;">
+                        <td style="padding: 0.75rem 1rem; font-weight: 600; color: #555;">${index + 1}</td>
+                        <td style="padding: 0.75rem 1rem; color: #000;">${student.name}</td>
+                    </tr>
+                `;
+            });
+
+            if (classStudents.length === 0) {
+                studentsList.innerHTML = `
+                    <tr>
+                        <td colspan="2" style="padding: 1rem; text-align: center; color: var(--text-light);">No students found in this class.</td>
+                    </tr>
+                `;
+            }
+
+            // Generate WhatsApp contact buttons for the specific class
+            const contacts = classContacts[className];
+            if (contacts) {
+                contactButtonsContainer.innerHTML = `
+                    <a href="https://wa.me/${contacts.admin1}" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; background: linear-gradient(135deg, #25D366 0%, #20BA58 100%); color: white; padding: 0.6rem 0.8rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);">
+                        <i class="fab fa-whatsapp" style="font-size: 1rem;"></i>
+                        <span>CONTACT CLASS USTHAD</span>
+                    </a>
+                `;
+            }
+
+            studentsCard.style.display = 'block';
+            setTimeout(() => studentsCard.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+        }
+        // Result Logic
+        function fetchResult(e) {
+            e.preventDefault();
+            const regNo = document.getElementById('regNo').value.trim();
+            const className = document.getElementById('className').value;
+            const errorMsg = document.getElementById('errorMsg');
+            const resultCard = document.getElementById('resultCard');
+            // Find student
+            const student = db.find(s => s.regNo === regNo && s.class === className);
+            if (student) {
+                errorMsg.style.display = 'none';
+                populateResultCard(student);
+                resultCard.style.display = 'block';
+                // Scroll smoothly to result
+                setTimeout(() => resultCard.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+            } else {
+                resultCard.style.display = 'none';
+                errorMsg.style.display = 'block';
+            }
+        }
+        function populateResultCard(student) {
+            // Store current student for editing
+            window.currentStudent = student;
+            document.getElementById('r-name').textContent = student.name;
+            document.getElementById('r-name-input').value = student.name;
+            document.getElementById('r-reg').textContent = student.regNo;
+            document.getElementById('r-class').textContent = student.class;
+            // Attendance Text
+            const attendanceVal = document.getElementById('r-attendance');
+            attendanceVal.textContent = student.attendance;
+            // Populate Marks Table
+            const marksTbody = document.getElementById('r-marks');
+            marksTbody.innerHTML = '';
+            let totalMarks = 0;
+            let totalMax = 0;
+            const maxPerSubject = 100;
+            for (const [subject, mark] of Object.entries(student.marks)) {
+                totalMarks += mark;
+                totalMax += maxPerSubject;
+                marksTbody.innerHTML += `
+                    <tr>
+                        <td style="font-weight: 600; color: #555;">${subject}</td>
+                        <td style="font-weight: 600; color: #000;">${mark}</td>
+                    </tr>
+                `;
+            }
+            document.getElementById('r-total').textContent = totalMarks;
+            // Calculate Grade
+            let grade = 'E';
+            const percentage = (totalMarks / totalMax) * 100;
+            if (percentage >= 90) grade = 'A+';
+            else if (percentage >= 80) grade = 'A';
+            else if (percentage >= 70) grade = 'B+';
+            else if (percentage >= 60) grade = 'B';
+            else if (percentage >= 50) grade = 'C+';
+            else if (percentage >= 40) grade = 'C';
+            else if (percentage >= 33) grade = 'D+';
+
+            if (student.status === 'FAIL') grade = 'E';
+            document.getElementById('r-grade').textContent = grade;
+            // Pass/Fail Status
+            const statusBadgeEl = document.getElementById('r-status');
+            const formattedStatus = student.status === 'PASS' ? 'PASSED' : 'FAILED';
+            statusBadgeEl.textContent = formattedStatus;
+            statusBadgeEl.className = 'badge ' + student.status.toLowerCase();
+        }
+
+        function editStudentName() {
+            const nameDisplay = document.getElementById('r-name');
+            const nameInput = document.getElementById('r-name-input');
+            const saveBtn = document.getElementById('saveNameBtn');
+            const cancelBtn = document.getElementById('cancelEditBtn');
+
+            nameDisplay.style.display = 'none';
+            nameInput.style.display = 'inline-block';
+            saveBtn.style.display = 'inline-block';
+            cancelBtn.style.display = 'inline-block';
+            nameInput.focus();
+            nameInput.select();
+        }
+
+        function saveStudentName() {
+            const nameInput = document.getElementById('r-name-input');
+            const newName = nameInput.value.trim();
+
+            if (!newName) {
+                alert('Please enter a student name');
+                return;
+            }
+
+            // Update the database
+            if (window.currentStudent) {
+                const studentIndex = db.findIndex(s => s.regNo === window.currentStudent.regNo && s.class === window.currentStudent.class);
+                if (studentIndex !== -1) {
+                    db[studentIndex].name = newName;
+                    window.currentStudent.name = newName;
+                }
+            }
+
+            // Cancel edit mode and show updated name
+            cancelEditName();
+
+            // Refresh the view students section if it's open
+            const studentsList = document.getElementById('students-list');
+            if (studentsList && studentsList.innerHTML) {
+                const className = document.getElementById('viewStudentsClass').value;
+                if (className) {
+                    const classStudents = db.filter(student => student.class === className);
+                    studentsList.innerHTML = '';
+                    classStudents.forEach((student, index) => {
+                        studentsList.innerHTML += `
+                            <tr style="border-bottom: 1px solid #eee;">
+                                <td style="padding: 0.75rem 1rem; font-weight: 600; color: #555;">${index + 1}</td>
+                                <td style="padding: 0.75rem 1rem; color: #000;">${student.name}</td>
+                            </tr>
+                        `;
+                    });
+                }
+            }
+
+            // Refresh all students by class view if it's open
+            const allClassCard = document.getElementById('allStudentsByClassCard');
+            if (allClassCard && allClassCard.style.display !== 'none') {
+                displayAllStudentsByClass();
+            }
+
+            alert('Student name updated successfully!');
+        }
+
+        function cancelEditName() {
+            const nameDisplay = document.getElementById('r-name');
+            const nameInput = document.getElementById('r-name-input');
+            const saveBtn = document.getElementById('saveNameBtn');
+            const cancelBtn = document.getElementById('cancelEditBtn');
+
+            nameDisplay.textContent = window.currentStudent ? window.currentStudent.name : 'Student Name';
+            nameDisplay.style.display = 'inline';
+            nameInput.style.display = 'none';
+            saveBtn.style.display = 'none';
+            cancelBtn.style.display = 'none';
+        }
+        // Display All Students by Class
+        function displayAllStudentsByClass() {
+            const allStudentsByClassCard = document.getElementById('allStudentsByClassCard');
+            const classwiseStudentsContainer = document.getElementById('classwiseStudentsContainer');
+            const classOrder = ["Class 1A", "Class 1B", "Class 2", "Class 3", "Class 4", "Class 5", "Class 6", "Class 7", "Class 8", "Class 9", "Class 10", "Class +1", "Class +2"];
+
+            classwiseStudentsContainer.innerHTML = '';
+
+            // Group students by class
+            const studentsByClass = {};
+            classOrder.forEach(cls => {
+                studentsByClass[cls] = db.filter(student => student.class === cls);
+            });
+
+            // Display each class
+            classOrder.forEach(className => {
+                const classStudents = studentsByClass[className];
+                if (classStudents.length > 0) {
+                    let html = `
+                        <div style="background: linear-gradient(135deg, rgba(0, 121, 107, 0.05) 0%, rgba(212, 175, 55, 0.05) 100%); border-left: 5px solid var(--primary); border-radius: 10px; padding: 1.5rem;">
+                            <h4 style="color: var(--primary-dark); margin-bottom: 1rem; font-size: 1.2rem;">📚 ${className}</h4>
+                            <div class="table-responsive" style="padding: 0; box-shadow: none;">
+                                <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                                    <thead>
+                                        <tr>
+                                            <th style="background: var(--primary); color: white; padding: 0.75rem; text-align: left; width: 10%;">Reg No</th>
+                                            <th style="background: var(--primary); color: white; padding: 0.75rem; text-align: left; width: 60%;">Student Name</th>
+                                            <th style="background: var(--primary); color: white; padding: 0.75rem; text-align: center; width: 30%;">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                    `;
+
+                    classStudents.forEach((student, index) => {
+                        const statusBadge = student.status === 'PASS'
+                            ? '<span style="background: var(--success); color: white; padding: 0.3rem 0.6rem; border-radius: 5px; font-weight: 600; font-size: 0.85rem;">PASS</span>'
+                            : '<span style="background: var(--danger); color: white; padding: 0.3rem 0.6rem; border-radius: 5px; font-weight: 600; font-size: 0.85rem;">FAIL</span>';
+
+                        html += `
+                            <tr style="border-bottom: 1px solid #eee;">
+                                <td style="padding: 0.75rem; color: #555; font-weight: 600;">${student.regNo}</td>
+                                <td style="padding: 0.75rem; color: #000;">${student.name}</td>
+                                <td style="padding: 0.75rem; text-align: center;">${statusBadge}</td>
+                            </tr>
+                        `;
+                    });
+
+                    html += `
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p style="margin-top: 0.75rem; color: var(--text-light); font-size: 0.9rem; text-align: right;"><strong>Total Students:</strong> ${classStudents.length}</p>
+                        </div>
+                    `;
+
+                    classwiseStudentsContainer.innerHTML += html;
+                }
+            });
+
+            allStudentsByClassCard.style.display = 'block';
+            setTimeout(() => allStudentsByClassCard.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+        }
+        // Modal Logic
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImg");
+        function openModal(src) {
+            modal.classList.add("show");
+            modalImg.src = src;
+        }
+        function closeModal() {
+            modal.classList.remove("show");
+        }
+        // Close modal on escape key
+        document.addEventListener('keydown', function (event) {
+            if (event.key === "Escape" && modal.classList.contains("show")) {
+                closeModal();
+            }
+        });
+
+        // Close modal on outside click
+        modal.addEventListener('click', function (e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+
+</html>
